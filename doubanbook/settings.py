@@ -13,7 +13,6 @@ BOT_NAME = 'doubanbook'
 
 SPIDER_MODULES = ['doubanbook.spiders']
 NEWSPIDER_MODULE = 'doubanbook.spiders'
-USER_AGENT='Mozilla/5.0 (Windows NT6.3;WOW64;rv:45.0) Gecko/20100101 Firefox/45.0'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -40,10 +39,10 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en',
+}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
