@@ -1,12 +1,28 @@
-from scrapy.spiders import Spider
-from scrapy.selector import HtmlXPathSelector
+from scrapy.spiders import Rule,CrawlSpider
+from scrapy.selector import Selector
 import logging
-class doubanSpider(Spider):
-	name = "dbbook"
-	#allowed_domians =["ttps://www.douban.com/doulist/1264675/"]
-	start_urls=(
-		"https://www.douban.com/doulist/1264675/"
-	)
+from scrapy.linkextractors import LinkExtractor
+from doubanbook.items import DoubanbookItem
 
-	def parse(self,response):
-		print response.body	
+
+class doubanSpider(CrawlSpider):
+	name = "doubanSpider"
+	#allowed_domians =["ttps://www.douban.com/doulist/1264675/"]
+	start_urls=[
+		"https://www.douban.com/doulist/1264675/",
+	]
+	rules = [
+		Rule(LinkExtractor(allow=(),follow=True,callback="parse_item"),
+	]
+
+	def parse_item(self,response):
+		sel = Selector(response)
+		bookname = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[4]/a/text()').extract()
+		author = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[6]/text()[1]').extract()
+		score = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[5]/span[2]/text()').extract()
+		scoreCount = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[5]/span[3]/text()').extract()
+		publishCompany = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[6]/text()[2]').extract()
+		publishTime = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[6]/text()[3]').extract()
+		link = sel.xpath('//*[@class="doulist-item"]/div/div[2]/div[4]/a/@href').extract()
+		# desc = sel.xpath().extract()
+		return item

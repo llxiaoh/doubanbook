@@ -20,7 +20,7 @@ USER_AGENT='Mozilla/5.0 (Windows NT6.3;WOW64;rv:45.0) Gecko/20100101 Firefox/45.
 #USER_AGENT = 'doubanbook (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
