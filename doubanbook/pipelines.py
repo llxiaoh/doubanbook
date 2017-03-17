@@ -14,4 +14,5 @@ class DoubanbookPipeline(object):
 	def process_item(self,item,spider):
 		line = json.dumps(dict(item))
 		self.file.write(line.decode("unicode_escape"))
+		self.file.close()
 		return item
